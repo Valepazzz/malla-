@@ -1,1 +1,135 @@
+/* Estilos generales y paleta de colores MEJORADA */
+:root {
+    --color-fondo: #f8f9fa;
+    --color-texto: #1f2937; /* Texto principal más oscuro */
+    
+    /* Paleta de rosas con más contraste */
+    --color-ramo-default: #fbcfe8; /* Rosa más intenso */
+    --color-ramo-hover: #f9a8d4;   /* Rosa medio para hover */
+    --color-ramo-aprobado: #ec4899; /* Rosa fuerte y vibrante */
+    
+    /* Colores para ramos bloqueados */
+    --color-ramo-bloqueado: #e5e7eb; /* Gris medio */
+    --color-texto-bloqueado: #4b5563; /* Texto gris oscuro */
+    
+    --color-borde: #d1d5db;
+    --sombra-caja: 0 4px 6px rgba(0, 0, 0, 0.07);
+}
 
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: var(--color-texto);
+}
+
+header {
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Contenedor principal de la malla (AHORA CON WRAP) */
+.malla-container {
+    display: flex;
+    flex-wrap: wrap; /* <<-- CAMBIO CLAVE: Permite que los semestres pasen a la siguiente fila */
+    justify-content: center;
+    gap: 15px; /* Espacio entre columnas y filas */
+    padding: 10px;
+}
+
+/* Columna de cada semestre (un poco más compacta) */
+.semestre {
+    flex: 1 1 170px; /* Permite que crezca pero con una base de 170px */
+    max-width: 180px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: var(--sombra-caja);
+    border: 1px solid var(--color-borde);
+    display: flex;
+    flex-direction: column;
+}
+
+.semestre h2 {
+    font-size: 1.05em;
+    font-weight: 600;
+    margin-top: 0;
+    color: var(--color-texto);
+    border-bottom: 2px solid var(--color-ramo-default);
+    padding-bottom: 10px;
+}
+
+/* Estilo de cada ramo (un poco más compacto) */
+.ramo {
+    background-color: var(--color-ramo-default);
+    color: var(--color-texto); /* Color de texto por defecto */
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    font-size: 0.8em; /* Fuente ligeramente más pequeña */
+    font-weight: 600;
+    min-height: 55px; /* Altura mínima reducida */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.ramo:hover {
+    background-color: var(--color-ramo-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Estilo para ramos aprobados */
+.ramo.aprobado {
+    background-color: var(--color-ramo-aprobado);
+    color: white;
+    text-decoration: line-through;
+    text-decoration-color: rgba(255, 255, 255, 0.7);
+    text-decoration-thickness: 2px;
+}
+
+/* Estilo para ramos bloqueados */
+.ramo.bloqueado {
+    background-color: var(--color-ramo-bloqueado);
+    color: var(--color-texto-bloqueado);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+.ramo.bloqueado:hover {
+    transform: none; /* No hay efecto de hover en ramos bloqueados */
+}
+
+/* Notificaciones */
+.notificacion {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #2c3e50; /* Color de notificación más sobrio */
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0.5s, transform 0.5s;
+}
+
+.notificacion.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(-10px); /* Pequeño efecto al aparecer */
+}
